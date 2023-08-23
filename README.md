@@ -80,6 +80,10 @@ bottom_axes.bar(df.index, df['Volume'])
 plt.show()
 ```
 
+### 3. 데이터 시각화 (matlplotlib, seaborn)
+
+### 4. 데이터 웹 앱 솔루션 (Gradio, Streamlit)
+
 
 
 
