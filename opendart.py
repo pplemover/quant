@@ -1,8 +1,14 @@
+### 0. 사업보고서 다운받기 ###
+
+from dotenv import load_dotenv
+import os
 import OpenDartReader
 
-### 0. 사업보고서 다운받기 ###
+# .env 파일 로드
+load_dotenv()
+
 # 객체 생성 (API KEY 지정)
-api_key = '	65a4ef10f488db0a24ac81de03308e9e7cfad785'
+api_key = os.getenv("DART_KEY")
 dart = OpenDartReader(api_key)
 
 # 종목코드, 조회기간 입력
