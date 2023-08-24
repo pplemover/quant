@@ -3,8 +3,15 @@
 
 # PDF 불러오기 및 텍스트 추출
 
+from dotenv import load_dotenv
 import os
-os.environ["OPENAI_API_KEY"] = "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"
+
+# .env 파일 로드
+load_dotenv()
+
+openai_api_key = os.environ.get("OPENAI_API_KEY")
+
+
 # load
 from PyPDF2 import PdfReader
 reader = PdfReader("the_little_prince.pdf")
