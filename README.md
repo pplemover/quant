@@ -2,6 +2,8 @@
 
 본 프로젝트는 파이썬을 활용하여 주식 데이터를 분석하고 시각화하는 것을 목표로 합니다.
 
+<br/>
+
 ### 1. OpenDART로 최신 사업보고서 txt 파일 다운로드받기 : opendart.py
 
 `OpenDartReader` 라이브러리를 활용하여 기업의 사업보고서를 다운로드하고, 해당 보고서의 텍스트 데이터를 전처리하여 파일로 저장합니다. 필요한 라이브러리는 다음과 같습니다. 
@@ -45,6 +47,9 @@ with open(f"재무제표_{report_idx}.txt", 'w', encoding='utf-8') as f:
     f.write(refined_text)
 ```
 
+---
+<br/>
+
 ### 2. 캔들차트 만들기 : candlechart.py
 
 `FinanceDataReader` 라이브러리를 활용하여 KRX 주식 데이터를 가져와 분석하고 시각화하였습니다. 필요한 라이브러리는 다음과 같습니다.
@@ -80,7 +85,46 @@ bottom_axes.bar(df.index, df['Volume'])
 plt.show()
 ```
 
+---
+<br/>
+
 ### 3. 파이썬 Streamlit 라이브러리를 통해서 Web applicatin으로 구현하기 : streamlit.py
+
+Streamlit을 활용하여 주식 데이터를 시각화하는 웹 애플리케이션을 만들 수 있습니다. 주식 종목 코드와 조회 기간을 설정하면 해당 기업의 주가 데이터를 시각화해줍니다. 필요한 라이브러리는 다음과 같습니다.
+```bash
+pip install streamlit FinanceDataReader pandas
+```
+
+```Python
+import streamlit as st
+import FinanceDataReader as fdr
+import pandas as pd
+import datetime
+
+# Streamlit 제목
+st.title('주가 데이터 시각화')
+st.header('w. Streamlit')
+
+# 사용자 입력: 종목 코드와 조회 기간
+stock_code = st.text_input("종목 코드 입력 :", '022100')
+date_range = st.date_input("조회일 설정 :", [datetime.date(2018, 1, 1), datetime.date(2023, 8, 23)])
+
+# 날짜를 문자열로 변환
+start_date = date_range[0].strftime("%Y-%m-%d")
+end_date = date_range[1].strftime("%Y-%m-%d")
+
+# FinanceDataReader를 사용하여 주식 데이터 가져오기
+df = fdr.DataReader(stock_code, start_date, end_date)
+
+# 데이터 표시
+st.dataframe(df)
+
+# Streamlit의 line_chart와 bar_chart를 사용하여 데이터 시각화
+st.line_chart(df[['5일', '20일', '60일', '120일', '240일']])
+st.bar_chart(df['Volume'])
+```
+
+`streamlit run` 명령어를 통해 위의 코드를 실행하면 웹 애플리케이션이 실행됩니다. 
 
 
 ### 4. 데이터 웹 앱 솔루션 (Gradio, Streamlit)
