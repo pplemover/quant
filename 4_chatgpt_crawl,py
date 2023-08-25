@@ -34,5 +34,5 @@ output_filename = f"{search_term}_기사제목.txt"
 with open(output_filename, "w", encoding="utf-8") as f:
     f.write(titles_text)
 
-# 성공적으로 추출 및 저장되었음을 메시지로 출력한다.
+# 성공적으로 추출 및 저장되었음을 메시지로 출력합니다.
 print(f"Article titles extracted and saved to '{output_filename}'.")

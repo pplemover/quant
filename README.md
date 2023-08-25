@@ -126,10 +126,37 @@ st.bar_chart(df['Volume'])
 
 `streamlit run` 명령어를 통해 위의 코드를 실행하면 웹 애플리케이션이 실행됩니다. 
 
+---
+<br/>
 
 ### 4. 데이터 웹 앱 솔루션 (Gradio, Streamlit)
 
+Python으로 네이버 뉴스 웹페이지에서 '테슬라'라는 검색어로 기사 제목을 추출하고, 추출된 기사 제목들을 텍스트 파일로 저장할 수 있습니다. 필요한 라이브러리는 다음과 같습니다.
+```bash
+pip install requests beautifulsoup4
+```
 
+for 문으로 1부터 10까지의 페이지를 순회하며 각 페이지에서 뉴스 기사 제목을 크롤링하는 것이 포인트입니다. 
+
+```Python
+# HTML을 파싱하기 위해 BeautifulSoup 객체를 생성합니다. 
+soup = BeautifulSoup(html_content, "html.parser")
+
+# 'news_tit' 클래스를 가진 모든 a태그 요소를 찾아 기사 제목을 추출합니다.
+    article_elements = soup.find_all("a", class_="news_tit")
+
+# article_titles 리스트에 append합니다.
+for article in article_elements:
+    title = article.get_text(strip=True)  # 텍스트에서 불필요한 공백을 제거합니다
+    article_titles.append(title)
+```
+
+모든 페이지를 순회하고 나면, `article_titles` 리스트에 저장된 기사 제목들을 하나의 문자열로 변환합니다. 
+```Python
+titles_text = "\n".join(article_titles)
+```
+
+마지막으로 기사 제목들이 담긴 텍스트 파일을 저장합니다.
 
 
 
