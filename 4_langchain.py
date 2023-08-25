@@ -1,20 +1,21 @@
-
 # !pip install OpenAI langchain PyPDF2 tiktoken faiss-cpu grobid-client
+# https://python.langchain.com/docs/modules/data_connection/document_loaders/pdf
 
-# PDF 불러오기 및 텍스트 추출
+# (1) PDF 불러오기 및 텍스트 추출
 
 from dotenv import load_dotenv
+from PyPDF2 import PdfReader
 import os
 
 # .env 파일 로드
 load_dotenv()
 
+# 환경변수로부터 OpenAI API 키를 가져온다. 
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 
-
-# load
-from PyPDF2 import PdfReader
+# PDF 파일을 PdfReader 클래스를 사용하여 열고 reader 변수에 저장한다.
 reader = PdfReader("the_little_prince.pdf")
+
 # 본문을 읽어 들인다.
 raw_text = ""
 for i, page in enumerate(reader.pages):
@@ -25,8 +26,7 @@ print("[PDF 텍스트 추출 샘플]\n")
 print(raw_text[:1000])
 
 
-
-# 3. LangChain 줄거리 요약
+# 2. LangChain 줄거리 요약
 from langchain import OpenAI
 from langchain.chains import AnalyzeDocumentChain
 from langchain.chains.summarize import load_summarize_chain
