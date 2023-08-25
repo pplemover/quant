@@ -1,17 +1,14 @@
 # 분석 기업 : 포스코DX (022100)
 # 조회기간 : (2018-01-01 ~ 2023-08-23)
 
-
 import streamlit as st
 import FinanceDataReader as fdr
 import pandas as pd
 import datetime
 
 # Streamlit title
-st.title('사전 학습 2강.')
-st.header('주가 데이터 시각화 (w. Streamlit)')
-st.text('* [사전 학습 1강] - [과제] - [주가 데이터 시각화] 코드 응용')
-st.header('')
+st.title('주가 데이터 시각화')
+st.header('w. Streamlit')
 
 st.divider()
 st.subheader('설정창')
@@ -21,7 +18,6 @@ st.title('')
 stock_code = st.text_input("종목 코드 입력 :", '022100')
 st.subheader('')
 date_range = st.date_input("조회일 설정 :", [datetime.date(2018, 1, 1), datetime.date(2023, 8, 23)])
-
 
 st.divider()
 st.subheader('데이터 차트')
