@@ -129,7 +129,7 @@ st.bar_chart(df['Volume'])
 ---
 <br/>
 
-### 4. 데이터 웹 앱 솔루션 (Gradio, Streamlit)
+### 4. 데이터 웹 앱 솔루션 (Gradio, Streamlit) : chatgpt_crawl.py
 
 Python으로 네이버 뉴스 웹페이지에서 '테슬라'라는 검색어로 기사 제목을 추출하고, 추출된 기사 제목들을 텍스트 파일로 저장할 수 있습니다. 필요한 라이브러리는 다음과 같습니다.
 ```bash
@@ -157,6 +157,11 @@ titles_text = "\n".join(article_titles)
 ```
 
 마지막으로 기사 제목들이 담긴 텍스트 파일을 저장합니다.
+
+
+<br/>
+
+### 5. LangChain Framework : Langchain.py
 
 
 
